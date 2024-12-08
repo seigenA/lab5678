@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #8e24aa, #ab47bc); /* Gradient purple background */
+            color: #ffffff; /* White text color for better contrast */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #000000; /* Black color for the "Welcome" text */
+            font-size: 2.5em; /* Increased font size */
+            margin-bottom: 40px;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .main-container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            width: 350px; /* Wider container */
+        }
+
+        .main-btn {
+            background-color: #8e24aa; /* Purple button */
+            color: #ffffff;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.2em; /* Larger font size */
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .main-btn:hover {
+            background-color: #ab47bc; /* Lighter purple when hovered */
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
+        }
+
+        .logout-btn {
+            background-color: #d32f2f; /* Red logout button */
+        }
+
+        .logout-btn:hover {
+            background-color: #e53935; /* Lighter red on hover */
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Increased gap between buttons */
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <h1>Welcome, <span th:text="${user.name}">User</span></h1>
+
+    <div class="buttons-container">
+        <button class="main-btn" onclick="redirectTo('/profile')">My Profile</button>
+        <button class="main-btn" onclick="redirectTo('/tasks')">My Tasks</button>
+        <button class="main-btn logout-btn" onclick="confirmLogout()">Log Out</button>
+    </div>
+</div>
+
+<script>
+    function redirectTo(url) {
+        window.location.href = url; // Redirect to the specified page
+    }
+
+    function confirmLogout() {
+        if (confirm("Are you sure you want to log out?")) {
+            window.location.href = '/logout'; // Redirect to logout page
+        }
+    }
+
+    // Auto logout after 30 seconds of inactivity
+    var idleTime = 0; // Inactivity time (in milliseconds)
+    var idleLimit = 30000; // Inactivity limit (30 seconds)
+
+    function resetIdleTime() {
+        idleTime = 0; // Reset inactivity time
+    }
+
+    function checkIdleTime() {
+        idleTime += 1000; // Increase the timer by 1 second
+        if (idleTime >= idleLimit) {
+            alert("You were logged out due to inactivity.");
+            window.location.href = "/login"; // Redirect to login page
+        }
+    }
+
+    window.onload = function () {
+        setInterval(checkIdleTime, 1000);
+
+        window.onmousemove = resetIdleTime;
+        window.onkeydown = resetIdleTime;
+        window.onclick = resetIdleTime;
+    };
+</script>
+</body>
+</html>

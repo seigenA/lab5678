@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #6a1b9a; /* Фиолетовый фон */
+            color: #000000; /* Черный цвет текста */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .profile-container {
+            width: 600px; /* Увеличен размер контейнера */
+            background-color: #ffffff; /* Белый фон для контейнера */
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(106, 27, 154, 0.4); /* Тень с фиолетовым оттенком */
+            padding: 50px 40px; /* Увеличено внутреннее расстояние */
+            text-align: center;
+        }
+
+        .profile-container h1 {
+            margin-bottom: 40px;
+            color: #6a1b9a; /* Глубокий фиолетовый для заголовка */
+            font-size: 42px; /* Увеличен размер заголовка */
+            text-shadow: 3px 3px 10px rgba(106, 27, 154, 0.4); /* Легкая тень */
+        }
+
+        .profile-container p {
+            margin: 25px 0;
+            font-size: 26px; /* Увеличен размер текста */
+            color: #000000; /* Черный цвет для текста */
+        }
+
+        .profile-container p strong {
+            color: #6a1b9a; /* Цвет меток в фиолетовом */
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 60px; /* Увеличено расстояние от текста */
+            padding: 18px 35px; /* Увеличены размеры кнопки */
+            font-size: 26px; /* Увеличен шрифт кнопки */
+            color: #fff;
+            background-color: #8e24aa; /* Фиолетовый цвет кнопки */
+            border: none;
+            border-radius: 12px; /* Углы округлены */
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #6a1b9a; /* Более темный фиолетовый при наведении */
+            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.5);
+        }
+    </style>
+</head>
+<body>
+<div class="profile-container">
+    <h1>Profile</h1>
+    <p><strong>Name:</strong> <span th:text="${user.name}">Username</span></p>
+    <p><strong>Email:</strong> <span th:text="${user.email}">Emailuser</span></p>
+    <p><strong>Age:</strong> <span th:text="${user.age}">Userage</span></p>
+    <a href="/main" class="back-button">Back to Menu</a>
+</div>
+</body>
+</html>
