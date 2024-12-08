@@ -1,0 +1,8 @@
+<form action="/emails/send" method="post">
+  <input type="email" name="to" placeholder="Email получателя" required>
+  <input type="text" name="subject" placeholder="Тема" required>
+  <textarea name="text" placeholder="Сообщение" required></textarea>
+  <button type="submit">Отправить</button>
+</form>
+<p th:if="${message}" th:text="${message}"></p>
+<p th:if="${error}" th:text="${error}"></p>
